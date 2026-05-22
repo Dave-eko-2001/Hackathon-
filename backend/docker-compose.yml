@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  backend:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - PROJECT_NAME=Bio-Tester Backend
+      - BACKEND_CORS_ORIGINS=["http://localhost:5173", "http://localhost:3000"]
+    depends_on:
+      - redis
+    volumes:
+      - .:/app
+
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
